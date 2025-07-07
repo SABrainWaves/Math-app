@@ -1,0 +1,31 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grade 8 Maths App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>🧠 Grade 8 Maths</h1>
+    <p>Welcome back, Student!</p>
+  </header>
+
+  <main>
+    <section class="topic-card">
+      <h2>Integers — Term 1</h2>
+      <button onclick="watchVideo('https://youtu.be/XyZ123abcDE')">🎥 Watch Lesson</button>
+      <button onclick="startQuiz()">🧪 Start Quiz</button>
+    </section>
+
+    <div id="quiz" class="hidden">
+      <p id="questionText"></p>
+      <div id="answers"></div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

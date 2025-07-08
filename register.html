@@ -1,60 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Register - Brain Waves</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <div class="container">
-    <img src="logo.png" alt="Brain Waves Logo" class="logo">
-    <h2>Create Your Account</h2>
-    <p>Join Brain Waves and start mastering math</p>
-    <form class="form">
-      <input type="text" placeholder="Full Name" required>
-      <input type="email" placeholder="Email" required>
-      <input type="password" placeholder="Create Password" required>
-      <input type="text" placeholder="Surname" required>
-      <button type="submit" class="btn">Register</button>
-    </form>
-    <p class="link">Already have an account? <a href="signin.html">Sign in here</a></p>
-  </div>
+<script>
+  const scriptURL = "https://script.google.com/macros/s/AKfycbwGDwPv2-6chFnJLT04zFQ1HgZyQquYLgbQcpMf7S2i1927jUnFIdQXSj7ABbDzxIg4/exec";
 
-  <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbwGDwPv2-6chFnJLT04zFQ1HgZyQquYLgbQcpMf7S2i1927jUnFIdQXSj7ABbDzxIg4/exec";
+  document.querySelector('form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.target;
 
-    document.querySelector('form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const form = e.target;
-      const data = {
-        action: "register",
-        name: form[0].value,
-        userid: form[1].value,
-        password: form[2].value,
-        surname: form[3].value
-      };
+    const data = {
+      action: "register",
+      name: form[0].value,
+      userid: form[1].value,
+      password: form[2].value,
+      surname: form[3].value
+    };
 
-      try {
-        const res = await fetch(scriptURL, {
-          method: "POST",
-          body: JSON.stringify(data),
-          headers: { "Content-Type": "application/json" }
-        });
+    const formData = new FormData();
+    for (const key in data) {
+      formData.append(key, data[key]);
+    }
 
-        const result = await res.json();
-        if (result.status === "success") {
-          alert("Account created! Redirecting to login...");
-          window.location.href = "signin.html";
-        } else {
-          alert(result.message || "Registration failed");
-        }
-      } catch (err) {
-        alert("Error connecting to server. Please try again.");
-        console.error(err);
+    try {
+      const res = await fetch(scriptURL, {
+        method: "POST",
+        body: formData
+        // 🚫 No headers needed — this avoids CORS issues
+      });
+
+      const result = await res.json();
+      if (result.status === "success") {
+        alert("Account created! Redirecting to login...");
+        window.location.href = "signin.html";
+      } else {
+        alert(result.message || "Registration failed");
       }
-    });
-  </script>
-</body>
-</html>
+    } catch (err) {
+      alert("Error connecting to server. Please try again.");
+      console.error(err);
+    }
+  });
+</script>

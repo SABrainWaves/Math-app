@@ -4,7 +4,7 @@ function watchVideo(url) {
   window.open(url, "_blank");
 }
 
-// Sample question (later load from Google Sheets or JSON)
+// Sample question
 const question = {
   text: "What is -2 + 5?",
   options: ["-3", "3", "2"],

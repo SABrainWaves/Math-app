@@ -1,31 +1,25 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Grade 8 Maths App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Brain Waves</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>🧠 Grade 8 Maths</h1>
-    <p>Welcome back, Student!</p>
-  </header>
+  <div class="container">
+    <header>
+      <img src="logo.png" alt="Brain Waves Logo" class="logo">
+      <h1>Welcome to <span class="highlight">Brain Waves</span></h1>
+      <p class="slogan">Are you ready to learn some math?</p>
+    </header>
 
-  <main>
-    <section class="topic-card">
-      <h2>Integers — Term 1</h2>
-      <button onclick="watchVideo('https://youtu.be/XyZ123abcDE')">🎥 Watch Lesson</button>
-      <button onclick="startQuiz()">🧪 Start Quiz</button>
-    </section>
-
-    <div id="quiz" class="hidden">
-      <p id="questionText"></p>
-      <div id="answers"></div>
+    <div class="buttons">
+      <a href="signin.html" class="btn">Sign In</a>
+      <a href="register.html" class="btn">Register</a>
+      <a href="about.html" class="btn secondary">Learn More About Us</a>
     </div>
-  </main>
-
-  <script src="script.js"></script>
+  </div>
 </body>
 </html>

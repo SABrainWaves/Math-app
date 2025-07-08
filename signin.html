@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign In - Brain Waves</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <img src="logo.png" alt="Brain Waves Logo" class="logo">
+    <h2>Welcome Back</h2>
+    <p>Please sign in to continue learning</p>
+    <form class="form">
+      <input type="email" placeholder="Email" required>
+      <input type="password" placeholder="Password" required>
+      <button type="submit" class="btn">Sign In</button>
+    </form>
+    <p class="link">Don’t have an account? <a href="register.html">Register here</a></p>
+  </div>
+
+  <script>
+    const scriptURL = "PASTE_YOUR_DEPLOYED_SCRIPT_URL_HERE";
+
+    document.querySelector('form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+
+      const data = {
+        action: "login",
+        userid: form[0].value,
+        password: form[1].value
+      };
+
+      try {
+        const res = await fetch(scriptURL, {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: { "Content-Type": "application/json" }
+        });
+
+        const result = await res.json();
+
+        if (result.status === "success") {
+          // Optionally store session info
+          localStorage.setItem("userName", result.name);
+          localStorage.setItem("userPaid", result.paid);
+
+          alert("Welcome " + result.name + "!");
+
+          // Redirect to dashboard or main learning area
+          window.location.href = "dashboard.html"; // replace with your page
+        } else {
+          alert(result.message || "Invalid login credentials");
+        }
+      } catch (err) {
+        alert("Error connecting to server. Please try again.");
+        console.error(err);
+      }
+    });
+  </script>
+</body>
+</html>
